@@ -7,6 +7,34 @@ output:
     transition: faster
 ---
 
+<!-- Custom JS/CSS to add the fixed footer -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('slide:not(.title-slide, .backdrop, .segue)').append('<footer></footer>');    
+    $('footer').attr('label', 'https://github.com/jimmylovestea/DataFest2017');
+
+  })
+</script>
+
+<style>
+  footer:after {
+    font-size: 12pt;
+    content: attr(label);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align:center;
+    bottom: 20px;
+    line-height: 1.9;
+    display: block;
+  }
+</style>
+<!-- End custom JS/CSS for fixed footer -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -25,8 +53,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Tonight:
 
-- Spend about an hour talking about the basics of collaborating & managing a team along with some tips on how to spend Night 1.
-- Afterwards: Hang out to answer questions, make recommendations for advanced collaboration workflows, talk about my cat or coffee or anything y'all want. 
+Spend about an hour talking about the basics of collaborating & managing a team along with some tips on how to spend Night 1.
+
+Afterwards: 
+
+Hang out to answer questions, make recommendations for advanced collaboration workflows, talk about my cat or coffee or anything y'all want. 
 
 ## DataFest Workshops
 
@@ -59,6 +90,12 @@ Consulting
 - Hang out on Night 1 to help teams get going.
 - Hang out on final day to help teams finish their analysis.
 
+## DataFest Overview
+
+- One to three "large" (500mb to 3gb in size) data files from an outside group are distributed to teams.
+- Data is revealed on Friday night to be analyzed until noon Sunday.
+- Teams analyze the data and present their findings to a set of judges.
+- Awards usually given out for _Best Insight_, _Best Visualization_ and _Best Use of Outside Data_.
 
 # Common DataFest Issues
 
@@ -119,29 +156,137 @@ And since people are all using different computers with different specs:
 - Team members on less powerful laptops waste their time doing simple things (Like reading in the data).
 - Marks the beginning of the _My team is awful and I hate them_ problem.
 
-## 
+## {.flexbox .vcenter}
 
 ### How do we help/solve these problems?
 
 
 # Day Zero
 
-## Before DataFest
+## Meet as a team to:
 
-Meet as a team
+Learn about your team member's strengths and weaknesses.
 
-- Organize and establish a system to share code files.
-- Establish Night 1 roles/tasks.
-- Learn about your team member's strengths and weaknesses.
-- Decide how your team will make decisions related to the analysis.
-- Establish a time-frame to accomplish different tasks.
+- What tools is each team member familiar with?
+- How much experience do they have with these tools?
+- Given these constraints, brainstorm how each person can be involved in:
+    - Learning what's in the data.
+    - Cleaning the data.
+    - Exploring the data.
+    - Analyzing the data.
+    - Preparing the presentation.
+    - Presenting to the judges.
+
+## Meet as a team to:
+
+Decide how your team will make decisions related to the analysis.
+
+- Make team decisions democratically.
+- One person in charge?
+- Decisions made via `sample()`?
+
+## Meet as a team to:
+
+Establish Night One roles, tasks and timelines.
+
+- Who will read-in and then save the data?
+- Who will start learning about what the data contain?
+- Who will clean the data? Or how will you divide this task up and then combine?
+- What will be your goal for Night One and how can you divide up tasks for the group to achieve this goal?
+
+## Meet as a team to:
+
+Organize and establish a system to share code files.
+
+- **Recommended**: Sync with [Dropbox](https://www.dropbox.com), [Google Drive](https://www.google.com/drive/), or something similar.
+- **Much less recommended**:  Sync with [Github](https://github.com).
+- **Not recommended**: Setup [Amazon Web Services](https://aws.amazon.com) accounts, create an EC2 instance with **R** and **RStudio**, create accounts for the instance, pull data from S3.
+
+
+## Organizing files and folders {.flexbox .vcenter}
+
+### Follow along as I setup a Dropbox and RStudio project
+
+## Summary
+
+I've just demo'd:
+
+- How to create and share a Dropbox folder.
+- Use this folder to create an **RStudio** Project.
+- Create folders for:
+    - Data.
+    - Code.
+    - Presentation.
+    - Results.
+
 
 # Night One
 
-After the data reveal:
+## After the data reveal:
 
-- Carry out the assigned roles/tasks.
-- Spend time learning what information is contained in the data.
-- Read-in, simplify, share and clean the data.
-- Begin exploring possible questions the data might answer.
-- Assign each team member roles/responsibilities to work on Night 1 and the next day.
+Before you even touch **R**, **Excel**, **Tableau**, **Python**, whatever:
+
+- Read any and all documentation about the data as a group.
+    - Read the description files and discuss (as a group) where the data come from, the types of variables contained.
+    - Brainstorm what YOU think might be interesting questions that the data might be able to answer.
+    - Write these preliminary idea down.
+
+**If you don't take the time to understand the data at the beginning you will only waste more time doing it later**
+
+## After the data reveal:
+
+Assuming everyone has access to the Dropbox folder and that everyone is using **R**:
+
+1. Have the person with the most powerful computer (Specifically, the person who has the most _RAM_) read-in the raw data.
+2. Have everyone else:
+    - Support the person reading in the data in case there's issues/problems with reading it in.
+    - Look through the data dictionary and start deciding which variables are IDs, numeric, categorical, dates/times.
+    - Continue to brainstorm ideas that might be interesting to explore.
+
+## Reading in the data:
+
+If you are the person assigned to read in the data:
+
+- Use the functions from the `readr` package to read in the data.
+    - These functions are (1) faster and (2) do a better job at guessing variable types.
+- Once you have the data read-in, use the `save()` function to place the resulting `.rda` file into the Dropbox folder.
+- Unless it's absolutely necessary, don't include the raw data in the Dropbox folder.
+    - `.rda` files are smaller and not everyone has a ton of Dropbox space.
+    - Using `.rda` files will lead to a standardized data file.
+
+## {.flexbox .vcenter}
+
+### Follow along as I read-in and save the data.
+
+## Start cleaning the data
+
+Begin cleaning the data by:
+
+- Deciding what to name the variables.
+    - Often, the data as provided has mysterious names. Give the variables more descriptive names.
+- Decide the type of variable (Categorical, numeric, dates/times).
+- Are there variables you can combine?
+    - For instance, separate date and time variables can be combined into a single datetime variable.
+- Are there variables that you might be able to split up into useful new features?
+
+## {.flexbox .vcenter}
+
+### Follow along as I begin cleaning the data.
+
+## Summary
+
+I've just demo'd:
+
+- How to read-in data using the `readr` package and save the data to Dropbox.
+- Clean the data by giving variables descriptive names, deciding variable types and combining variables.
+
+Tips:
+
+- Don't drop variables unless they're redundant.
+- Clean as much data up-front as possible but don't feel compelled to clean everything.
+    - Use the questions you came up with while brainstorming to decide which variables are the most essential to be cleaned.
+
+# Next steps
+
+## 
+

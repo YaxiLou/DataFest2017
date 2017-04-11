@@ -97,6 +97,36 @@
           </hgroup>
   </slide>
 
+<!-- Custom JS/CSS to add the fixed footer -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('slide:not(.title-slide, .backdrop, .segue)').append('<footer></footer>');    
+    $('footer').attr('label', 'https://github.com/jimmylovestea/DataFest2017');
+
+  })
+</script>
+
+<style>
+  footer:after {
+    font-size: 12pt;
+    content: attr(label);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align:center;
+    bottom: 20px;
+    line-height: 1.9;
+    display: block;
+  }
+</style>
+
+<!-- End custom JS/CSS for fixed footer -->
+
 <slide class=''><hgroup><h2>Workshop Focus</h2></hgroup><article  id="workshop-focus">
 
 <ul>
@@ -119,10 +149,11 @@
 
 <p>Tonight:</p>
 
-<ul>
-<li>Spend about an hour talking about the basics of collaborating &amp; managing a team along with some tips on how to spend Night 1.</li>
-<li>Afterwards: Hang out to answer questions, make recommendations for advanced collaboration workflows, talk about my cat or coffee or anything y&#39;all want.</li>
-</ul>
+<p>Spend about an hour talking about the basics of collaborating &amp; managing a team along with some tips on how to spend Night 1.</p>
+
+<p>Afterwards:</p>
+
+<p>Hang out to answer questions, make recommendations for advanced collaboration workflows, talk about my cat or coffee or anything y&#39;all want.</p>
 
 </article></slide><slide class=''><hgroup><h2>DataFest Workshops</h2></hgroup><article  id="datafest-workshops-1">
 
@@ -163,6 +194,15 @@
 <ul>
 <li>Hang out on Night 1 to help teams get going.</li>
 <li>Hang out on final day to help teams finish their analysis.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>DataFest Overview</h2></hgroup><article  id="datafest-overview">
+
+<ul>
+<li>One to three &quot;large&quot; (500mb to 3gb in size) data files from an outside group are distributed to teams.</li>
+<li>Data is revealed on Friday night to be analyzed until noon Sunday.</li>
+<li>Teams analyze the data and present their findings to a set of judges.</li>
+<li>Awards usually given out for <em>Best Insight</em>, <em>Best Visualization</em> and <em>Best Use of Outside Data</em>.</li>
 </ul>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Common DataFest Issues</h2></hgroup><article  id="common-datafest-issues">
@@ -238,35 +278,185 @@
 <li>Marks the beginning of the <em>My team is awful and I hate them</em> problem.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section" class="flexbox vcenter">
 
 <h3>How do we help/solve these problems?</h3>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Day Zero</h2></hgroup><article  id="day-zero">
 
-</article></slide><slide class=''><hgroup><h2>Before DataFest</h2></hgroup><article  id="before-datafest">
+</article></slide><slide class=''><hgroup><h2>Meet as a team to:</h2></hgroup><article  id="meet-as-a-team-to">
 
-<p>Meet as a team</p>
+<p>Learn about your team member&#39;s strengths and weaknesses.</p>
 
 <ul>
-<li>Organize and establish a system to share code files.</li>
-<li>Establish Night 1 roles/tasks.</li>
-<li>Learn about your team member&#39;s strengths and weaknesses.</li>
-<li>Decide how your team will make decisions related to the analysis.</li>
-<li>Establish a time-frame to accomplish different tasks.</li>
+<li>What tools is each team member familiar with?</li>
+<li>How much experience do they have with these tools?</li>
+<li>Given these constraints, brainstorm how each person can be involved in:
+
+<ul>
+<li>Learning what&#39;s in the data.</li>
+<li>Cleaning the data.</li>
+<li>Exploring the data.</li>
+<li>Analyzing the data.</li>
+<li>Preparing the presentation.</li>
+<li>Presenting to the judges.</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Meet as a team to:</h2></hgroup><article  id="meet-as-a-team-to-1">
+
+<p>Decide how your team will make decisions related to the analysis.</p>
+
+<ul>
+<li>Make team decisions democratically.</li>
+<li>One person in charge?</li>
+<li>Decisions made via <code>sample()</code>?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Meet as a team to:</h2></hgroup><article  id="meet-as-a-team-to-2">
+
+<p>Establish Night One roles, tasks and timelines.</p>
+
+<ul>
+<li>Who will read-in and then save the data?</li>
+<li>Who will start learning about what the data contain?</li>
+<li>Who will clean the data? Or how will you divide this task up and then combine?</li>
+<li>What will be your goal for Night One and how can you divide up tasks for the group to achieve this goal?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Meet as a team to:</h2></hgroup><article  id="meet-as-a-team-to-3">
+
+<p>Organize and establish a system to share code files.</p>
+
+<ul>
+<li><strong>Recommended</strong>: Sync with <a href='https://www.dropbox.com' title=''>Dropbox</a>, <a href='https://www.google.com/drive/' title=''>Google Drive</a>, or something similar.</li>
+<li><strong>Much less recommended</strong>: Sync with <a href='https://github.com' title=''>Github</a>.</li>
+<li><strong>Not recommended</strong>: Setup <a href='https://aws.amazon.com' title=''>Amazon Web Services</a> accounts, create an EC2 instance with <strong>R</strong> and <strong>RStudio</strong>, create accounts for the instance, pull data from S3.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Organizing files and folders</h2></hgroup><article  id="organizing-files-and-folders" class="flexbox vcenter">
+
+<h3>Follow along as I setup a Dropbox and RStudio project</h3>
+
+</article></slide><slide class=''><hgroup><h2>Summary</h2></hgroup><article  id="summary">
+
+<p>I&#39;ve just demo&#39;d:</p>
+
+<ul>
+<li>How to create and share a Dropbox folder.</li>
+<li>Use this folder to create an <strong>RStudio</strong> Project.</li>
+<li>Create folders for:
+
+<ul>
+<li>Data.</li>
+<li>Code.</li>
+<li>Presentation.</li>
+<li>Results.</li>
+</ul></li>
 </ul>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Night One</h2></hgroup><article  id="night-one">
 
-<p>After the data reveal:</p>
+</article></slide><slide class=''><hgroup><h2>After the data reveal:</h2></hgroup><article  id="after-the-data-reveal">
+
+<p>Before you even touch <strong>R</strong>, <strong>Excel</strong>, <strong>Tableau</strong>, <strong>Python</strong>, whatever:</p>
 
 <ul>
-<li>Carry out the assigned roles/tasks.</li>
-<li>Spend time learning what information is contained in the data.</li>
-<li>Read-in, simplify, share and clean the data.</li>
-<li>Begin exploring possible questions the data might answer.</li>
-<li>Assign each team member roles/responsibilities to work on Night 1 and the next day.</li>
-</ul></article></slide>
+<li>Read any and all documentation about the data as a group.
+
+<ul>
+<li>Read the description files and discuss (as a group) where the data come from, the types of variables contained.</li>
+<li>Brainstorm what YOU think might be interesting questions that the data might be able to answer.</li>
+<li>Write these preliminary idea down.</li>
+</ul></li>
+</ul>
+
+<p><strong>If you don&#39;t take the time to understand the data at the beginning you will only waste more time doing it later</strong></p>
+
+</article></slide><slide class=''><hgroup><h2>After the data reveal:</h2></hgroup><article  id="after-the-data-reveal-1">
+
+<p>Assuming everyone has access to the Dropbox folder and that everyone is using <strong>R</strong>:</p>
+
+<ol>
+<li>Have the person with the most powerful computer (Specifically, the person who has the most <em>RAM</em>) read-in the raw data.</li>
+<li>Have everyone else:
+
+<ul>
+<li>Support the person reading in the data in case there&#39;s issues/problems with reading it in.</li>
+<li>Look through the data dictionary and start deciding which variables are IDs, numeric, categorical, dates/times.</li>
+<li>Continue to brainstorm ideas that might be interesting to explore.</li>
+</ul></li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>Reading in the data:</h2></hgroup><article  id="reading-in-the-data">
+
+<p>If you are the person assigned to read in the data:</p>
+
+<ul>
+<li>Use the functions from the <code>readr</code> package to read in the data.
+
+<ul>
+<li>These functions are (1) faster and (2) do a better job at guessing variable types.</li>
+</ul></li>
+<li>Once you have the data read-in, use the <code>save()</code> function to place the resulting <code>.rda</code> file into the Dropbox folder.</li>
+<li>Unless it&#39;s absolutely necessary, don&#39;t include the raw data in the Dropbox folder.
+
+<ul>
+<li><code>.rda</code> files are smaller and not everyone has a ton of Dropbox space.</li>
+<li>Using <code>.rda</code> files will lead to a standardized data file.</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1" class="flexbox vcenter">
+
+<h3>Follow along as I read-in and save the data.</h3>
+
+</article></slide><slide class=''><hgroup><h2>Start cleaning the data</h2></hgroup><article  id="start-cleaning-the-data">
+
+<p>Begin cleaning the data by:</p>
+
+<ul>
+<li>Deciding what to name the variables.
+
+<ul>
+<li>Often, the data as provided has mysterious names. Give the variables more descriptive names.</li>
+</ul></li>
+<li>Decide the type of variable (Categorical, numeric, dates/times).</li>
+<li>Are there variables you can combine?
+
+<ul>
+<li>For instance, separate date and time variables can be combined into a single datetime variable.</li>
+</ul></li>
+<li>Are there variables that you might be able to split up into useful new features?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2" class="flexbox vcenter">
+
+<h3>Follow along as I begin cleaning the data.</h3>
+
+</article></slide><slide class=''><hgroup><h2>Summary</h2></hgroup><article  id="summary-1">
+
+<p>I&#39;ve just demo&#39;d:</p>
+
+<ul>
+<li>How to read-in data using the <code>readr</code> package and save the data to Dropbox.</li>
+<li>Clean the data by giving variables descriptive names, deciding variable types and combining variables.</li>
+</ul>
+
+<p>Tips:</p>
+
+<ul>
+<li>Don&#39;t drop variables unless they&#39;re redundant.</li>
+<li>Clean as much data up-front as possible but don&#39;t feel compelled to clean everything.
+
+<ul>
+<li>Use the questions you came up with while brainstorming to decide which variables are the most essential to be cleaned.</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Next steps</h2></hgroup><article  id="next-steps">
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3"></article></slide>
 
 
   <slide class="backdrop"></slide>

@@ -1,0 +1,147 @@
+---
+title: "The Nuts and Bolts of DataFest Prep"
+author: '@jimmylovestea'
+date: "UCLA DataFest Workshop I"
+output: 
+  ioslides_presentation: 
+    transition: faster
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Workshop Focus
+
+- Get your team ready to _collaborate_.
+    - Organize team files/folders.
+    - Share code/data.
+- Share strategies to streamline Night 1.
+    - Read-in and simplify data.
+    - Clean and tidy data.
+    - Decipher variables.
+
+## DataFest Workshops
+
+Tonight:
+
+- Spend about an hour talking about the basics of collaborating & managing a team along with some tips on how to spend Night 1.
+- Afterwards: Hang out to answer questions, make recommendations for advanced collaboration workflows, talk about my cat or coffee or anything y'all want. 
+
+## DataFest Workshops
+
+Next week:
+
+- Focus on workflows for _Exploratory Data Analysis_ using the `tidyverse` set of packages.
+
+## Who am I?
+
+I am James.
+
+- Ph.D. Candidate in statistics.
+- Avid **R** user.
+
+Projects I've worked on:
+    
+- Collaborated with Math & CS grad students to analyze some fairly large [Yelp! data](https://www.yelp.com/dataset_challenge)
+- Collaborated with my Ph.D. adviser, [Rick Paik Schoenberg]() & other grad students in statistical seismology.
+- Wrote labs and developed the package used in the [Mobilize Introduction to Data Science](http://www.mobilizingcs.org/introduction-to-data-science) high school math course.
+
+## My Role in DataFest
+
+Planning
+
+- Work with data providers to refine data sets for the competition
+- Schedule grad student helpers and outside VIPs.
+
+Consulting
+
+- Hang out on Night 1 to help teams get going.
+- Hang out on final day to help teams finish their analysis.
+
+
+# Common DataFest Issues
+
+## The _Too many cooks in the kitchen_ Problem
+
+Individual team members:
+
+- Write code that works on their laptops.
+- Use file names that aren't descriptive (Except to themselves).
+- Share the files via e-mail.
+
+## The _Too many cooks in the kitchen_ Problem
+
+By the last day, the team's code:
+    
+- Is scattered across numerous e-mail threads.
+- Doesn't run without modifications (Often lots of them).
+- Requires one team member to create new code files by copy/pasting, fixing, adjusting, modifying, etc. the group's code into something that kinda works.
+
+## The _My team is awful and I hate them_ problem
+
+Individual team members:
+
+- Have varying level of coding/data-analysis skills.
+- Work individually on the data analysis, often replicating others work on their own computers.
+- Have different interests/personalities.
+
+## The _My team is awful and I hate them_ problem
+
+By the last day, the team:
+
+- Is fragmented (Often some team members have quit).
+- Has one team member doing all of the work or making all of the decisions.
+- Over-stressed and scrambling to do anything that they can present to the judges.
+
+## The _Data analysis starts with k-means_ problem
+
+Night one:
+
+- The data provider reveals the data.
+- Teams get the data, read it into their computers and ...
+- ... immediatly run the most complicated algorithm they can find.
+
+## The _Data analysis starts with k-means_ problem
+
+Which results in:
+
+- Teams wasting valuable time on models/outputs that...
+- ... they don't understand.
+- ... pigeon hole them into solving some problem that was only marginally interesting in the first place.
+- ... Limits their understanding of what exactly is in the data and what it means.
+
+## The _Data analysis starts with k-means_ problem
+
+And since people are all using different computers with different specs:
+
+- Each team member has a modified data file that works on their own computers but is meaningless to everyone elses.
+- Team members on less powerful laptops waste their time doing simple things (Like reading in the data).
+- Marks the beginning of the _My team is awful and I hate them_ problem.
+
+## 
+
+### How do we help/solve these problems?
+
+
+# Day Zero
+
+## Before DataFest
+
+Meet as a team
+
+- Organize and establish a system to share code files.
+- Establish Night 1 roles/tasks.
+- Learn about your team member's strengths and weaknesses.
+- Decide how your team will make decisions related to the analysis.
+- Establish a time-frame to accomplish different tasks.
+
+# Night One
+
+After the data reveal:
+
+- Carry out the assigned roles/tasks.
+- Spend time learning what information is contained in the data.
+- Read-in, simplify, share and clean the data.
+- Begin exploring possible questions the data might answer.
+- Assign each team member roles/responsibilities to work on Night 1 and the next day.

@@ -288,5 +288,36 @@ Tips:
 
 # Next steps
 
-## 
+## Exploratory Data Analysis (EDA)
 
+- Begin making plots of the data to learn about them individually.
+    - Can you answer some of your brainstorming questions with plots?
+- Maintain a single, complete, clean `.rda` data file.
+- 
+
+## Stop and Walk away
+
+After performing some easy EDA
+
+- Stop.
+- Walk away.
+- Think about what you've learned so far and decide how you want to proceed.
+    - Decide on a goal and divide up tasks for _everyone_ to accomplish that goal.
+
+## Other tips
+
+1. Don't be a ball-hog.
+    - Listen to everyone's ideas and opinions. 
+    - Don't monopolize what ideas your group works on.
+    - Don't monopolize the work.
+    - Don't be a jerk.
+2. Continue to step away from your laptops and talk about:
+    - What you've learned.
+    - Potential goals to accomplish.
+    - How to accomplish them.
+3. Keep things organized and synced.
+
+
+## {.flexbox .vcenter}
+
+### 

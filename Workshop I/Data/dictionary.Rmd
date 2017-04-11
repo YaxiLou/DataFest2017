@@ -1,0 +1,51 @@
+---
+title: "SCEC Earthquake Data Dictionary"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Variables (In column order)
+
+1. YYY/MM/DD - Event date
+2. HH:mm:SS.ss - Event time
+3. ET - Type of event
+    - eq - Earthquake
+    - qb - Quarry blast: Event is an explosion associated with work at a quarry. In historical catalog, this may also include other types of explosions, such as seismic surveys. 
+    - nt - Nuclear explosion: Event is an explosion at a nuclear test site. 
+    - ex - Explosion: Event is an explosion from an unknown cause. 
+    - sh - Shot: Event is an explosion that is part of a seismic survey. 
+    - sn - Sonic Boom: Event is from a sonic shock wave. 
+    - st - Subnet Trigger: Event detected by network triggering algorithm. To be determined by analysts if energy is seismic. 
+    - th - Thunder: Event is associated with a thunder storm. 
+    - uk - Unknown: Event of an indeterminate type or very badly located event. Rarely used in current catalog.
+4. GT - Geographic Type
+    - l - Local event: Earthquake within the SCSN authoritative region. In cases where a sequence or large event occurs near the border, local events could exist 10-25km (0.1 to 0.2 degrees) beyond the official boundary for catalog completeness. 
+    - r - Regional event: Seismic event occurred outside the network boundary in neighboring network. Location quality may not be refined by the SCSN. 
+    - t - Teleseismic event: Seismic event occurred at a distance greater than 1,000km from closest SCSN station.
+5. MAG - Magnitude of the event
+6. M - Magnitude type
+    - e energy magnitude
+    - w moment magnitude
+    - b body-wave magnitude
+    - s surface-wave magnitude
+    - l local (WOOD-ANDERSON) magnitude
+    - lr revised local magnitude
+    - c coda amplitude
+    - h helicorder magnitude (short-period Benioff) 
+    - d coda duration magnitude
+    - n no magnitude
+7. LAT - Latitude of event
+8. LON - Longitude of event
+9. DEPTH - Depth of event (in kilometers)
+10. Q - Location quality
+    - 'A'  +- 1 km horizontal distance, +- 2 km depth
+    - 'B'  +- 2 km horizontal distance, +- 5 km depth
+    - 'C'  +- 5 km horizontal distance, no depth restriction
+    - 'D'  >+- 5 km horizontal distance
+    - 'Z'	 no quality listed in database
+11. EVID - Unique event ID
+12. NPH - Number of picked phases
+13. NGRM - Number of grams (i.e. Number of station traces)

@@ -137,7 +137,7 @@ Night one:
 
 - The data provider reveals the data.
 - Teams get the data, read it into their computers and ...
-- ... immediatly run the most complicated algorithm they can find.
+- ... immediately run the most complicated algorithm they can find.
 
 ## The _Data analysis starts with k-means_ problem
 
@@ -152,7 +152,7 @@ Which results in:
 
 And since people are all using different computers with different specs:
 
-- Each team member has a modified data file that works on their own computers but is meaningless to everyone elses.
+- Each team member has a modified data file that works on their own computers but is meaningless to everyone else.
 - Team members on less powerful laptops waste their time doing simple things (Like reading in the data).
 - Marks the beginning of the _My team is awful and I hate them_ problem.
 
@@ -293,7 +293,6 @@ Tips:
 - Begin making plots of the data to learn about them individually.
     - Can you answer some of your brainstorming questions with plots?
 - Maintain a single, complete, clean `.rda` data file.
-- 
 
 ## Stop and Walk away
 
@@ -320,4 +319,8 @@ After performing some easy EDA
 
 ## {.flexbox .vcenter}
 
-### 
+### Questions?
+
+## {.flexbox .vcenter}
+
+### <3 Thanks for attending! <3

@@ -5,6 +5,8 @@ date: "UCLA DataFest Workshop II"
 output: 
   ioslides_presentation: 
     transition: faster
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- Custom JS/CSS to add the fixed footer -->
@@ -36,7 +38,7 @@ output:
 <!-- End custom JS/CSS for fixed footer -->
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Workshop Focus
@@ -47,273 +49,213 @@ knitr::opts_chunk$set(echo = FALSE)
     - Make plots with `ggplot2`.
     - String commands together with pipes (`%>%`)
 
-## DataFest Workshops
+## From last time:
 
-Tonight:
+_Workshop I_ focused on meeting with your team to start getting organized.
 
-Spend about an hour talking about the basics of collaborating & managing a team along with some tips on how to spend Night 1.
+- How will the team share files? 
+    - I suggested Dropbox.
+- How will the team spend the first part of night one? 
+    - One person reads the data and saves it. 
+    - Other team members read any documentation connected to the data.
+    - Everyone starts brain-storming questions to try and answer with the data.
 
-Afterwards: 
+## From last time:
 
-Hang out to answer questions, make recommendations for advanced collaboration workflows, talk about my cat or coffee or anything y'all want. 
+This workshop focuses on what to do once you:
 
-## DataFest Workshops
+- Have read in (and saved as an .rda) the raw data.
+- Have spent some time cleaning the variable names, checking the `class()` of the variables.
+- Understand what the individual variables represent in the context of the data.
 
-Next week:
+Specifically, exploring your data with the `tidyverse`.
 
-- Focus on workflows for _Exploratory Data Analysis_ using the `tidyverse` set of packages.
+## `tidyverse`?
 
-## Who am I?
+The `tidyverse` is alternative approach to coding in **R**.
 
-I am James.
+- Code is still written in **R**.
+- Code is still executed in **R**.
+- The style of how the code is written is slightly different.
 
-- Ph.D. Candidate in statistics.
-- Avid **R** user.
+Specifically:
 
-Projects I've worked on:
-    
-- Collaborated with Math & CS grad students to analyze some fairly large [Yelp! data](https://www.yelp.com/dataset_challenge)
-- Collaborated with my Ph.D. adviser, [Rick Paik Schoenberg]() & other grad students in statistical seismology.
-- Wrote labs and developed the package used in the [Mobilize Introduction to Data Science](http://www.mobilizingcs.org/introduction-to-data-science) high school math course.
+- Code utilizes pipes to take the output of one function and place it into a second function.
+- Focus is on manipulating data frames.
+- Packages from the `tidyverse` tend to work really well with each other.
 
-## My Role in DataFest
+## `tidyverse`?
 
-Planning
+### Example: Calculate the mean of `y` conditioned on the value of `x`.
 
-- Work with data providers to refine data sets for the competition
-- Schedule grad student helpers and outside VIPs.
+```{r, echo = TRUE}
+df <- data.frame(x = c("A", "A", "B", "B", "A", "C"),
+                 y = c(1, 8, 6, 9, 7, 3))
+df
+```
 
-Consulting
+## `tidyverse`?
 
-- Hang out on Night 1 to help teams get going.
-- Hang out on final day to help teams finish their analysis.
+### `base` **R**
 
-## DataFest Overview
+```{r}
+mean(df$y[df$x == "A"])
+mean(df$y[df$x == "B"])
+mean(df$y[df$x == "C"])
+```
 
-- One to three "large" (500mb to 3gb in size) data files from an outside group are distributed to teams.
-- Data is revealed on Friday night to be analyzed until noon Sunday.
-- Teams analyze the data and present their findings to a set of judges.
-- Awards usually given out for _Best Insight_, _Best Visualization_ and _Best Use of Outside Data_.
+## `tidyverse`?
 
-# Common DataFest Issues
+### `tidyverse`
 
-## The _Too many cooks in the kitchen_ Problem
+```{r, warning = FALSE, message = FALSE}
+library(dplyr)
+df %>% 
+  group_by(x) %>% 
+  summarize(means = mean(y))
+```
 
-Individual team members:
 
-- Write code that works on their laptops.
-- Use file names that aren't descriptive (Except to themselves).
-- Share the files via e-mail.
+# Exploring your data.
 
-## The _Too many cooks in the kitchen_ Problem
+## Goals
 
-By the last day, the team's code:
-    
-- Is scattered across numerous e-mail threads.
-- Doesn't run without modifications (Often lots of them).
-- Requires one team member to create new code files by copy/pasting, fixing, adjusting, modifying, etc. the group's code into something that kinda works.
+When doing EDA, you want to:
 
-## The _My team is awful and I hate them_ problem
+- Learn about the distributions of variables.
+- Look for how variables are related.
+- Use what you learn to generate questions about the data...
+- ... and then use more EDA to look for answers.
 
-Individual team members:
+## Fuel Economy Data
 
-- Have varying level of coding/data-analysis skills.
-- Work individually on the data analysis, often replicating others work on their own computers.
-- Have different interests/personalities.
+Our data deals with fuel economy in vehicles from 1984-present.
 
-## The _My team is awful and I hate them_ problem
-
-By the last day, the team:
-
-- Is fragmented (Often some team members have quit).
-- Has one team member doing all of the work or making all of the decisions.
-- Over-stressed and scrambling to do anything that they can present to the judges.
-
-## The _Data analysis starts with k-means_ problem
-
-Night one:
-
-- The data provider reveals the data.
-- Teams get the data, read it into their computers and ...
-- ... immediately run the most complicated algorithm they can find.
-
-## The _Data analysis starts with k-means_ problem
-
-Which results in:
-
-- Teams wasting valuable time on models/outputs that...
-- ... they don't understand.
-- ... pigeon hole them into solving some problem that was only marginally interesting in the first place.
-- ... Limits their understanding of what exactly is in the data and what it means.
-
-## The _Data analysis starts with k-means_ problem
-
-And since people are all using different computers with different specs:
-
-- Each team member has a modified data file that works on their own computers but is meaningless to everyone else.
-- Team members on less powerful laptops waste their time doing simple things (Like reading in the data).
-- Marks the beginning of the _My team is awful and I hate them_ problem.
+- https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle
+    - Look for: **Download the Vehicle Data**
+    - Variable definitions are under the **Data Description** label.
+    - Data are also on Github.
 
 ## {.flexbox .vcenter}
 
-### How do we help/solve these problems?
-
-
-# Day Zero
-
-## Meet as a team to:
-
-Learn about your team member's strengths and weaknesses.
-
-- What tools is each team member familiar with?
-- How much experience do they have with these tools?
-- Given these constraints, brainstorm how each person can be involved in:
-    - Learning what's in the data.
-    - Cleaning the data.
-    - Exploring the data.
-    - Analyzing the data.
-    - Preparing the presentation.
-    - Presenting to the judges.
-
-## Meet as a team to:
-
-Decide how your team will make decisions related to the analysis.
-
-- Make team decisions democratically.
-- One person in charge?
-- Decisions made via `sample()`?
-
-## Meet as a team to:
-
-Establish Night One roles, tasks and timelines.
-
-- Who will read-in and then save the data?
-- Who will start learning about what the data contain?
-- Who will clean the data? Or how will you divide this task up and then combine?
-- What will be your goal for Night One and how can you divide up tasks for the group to achieve this goal?
-
-## Meet as a team to:
-
-Organize and establish a system to share code files.
-
-- **Recommended**: Sync with [Dropbox](https://www.dropbox.com), [Google Drive](https://www.google.com/drive/), or something similar.
-- **Much less recommended**:  Sync with [Github](https://github.com).
-- **Not recommended**: Setup [Amazon Web Services](https://aws.amazon.com) accounts, create an EC2 instance with **R** and **RStudio**, create accounts for the instance, pull data from S3.
-
-
-## Organizing files and folders {.flexbox .vcenter}
-
-### Follow along as I setup a Dropbox and RStudio project
+_Follow along as we read in our data, look through the vehicle definitions and make plots with `ggplot2`_
 
 ## Summary
 
-I've just demo'd:
+We've just demo'd:
 
-- How to create and share a Dropbox folder.
-- Use this folder to create an **RStudio** Project.
-- Create folders for:
-    - Data.
-    - Code.
-    - Presentation.
-    - Results.
+- Using the `readr` package to read in the data.
+    - Also, how to solve variable encoding issues from within `readr` functions.
+- Looked through the variable definitions and generated a question.
+- Used plots made with `ggplot2` to answer our question.
 
+## `ggplot2`
 
-# Night One
+`ggplot2` focuses on building plots in layers.
 
-## After the data reveal:
+- Start with data.
+- Include some aesthetics
+    - _What pieces of the data will be plotted?_
+- Add a `geometry`
+    - _Where should each aesthetic be placed in the plot?_
+- Iterate:
+    - Change scales/axes.
+    - Include additional layers/geoms.
+    - Change theme elements.
 
-Before you even touch **R**, **Excel**, **Tableau**, **Python**, whatever:
+## On Your Own
 
-- Read any and all documentation about the data as a group.
-    - Read the description files and discuss (as a group) where the data come from, the types of variables contained.
-    - Brainstorm what YOU think might be interesting questions that the data might be able to answer.
-    - Write these preliminary idea down.
+Accomplish the following:
 
-**If you don't take the time to understand the data at the beginning you will only waste more time doing it later**
+1. Go to http://ggplot2.tidyverse.org/reference/
+    - Click on a `geom_`, scroll to the examples.
+2. Pick a variable from the data that you can use with the `geom_` you chose.
+3. Use `ggplot2`, the `geom_` and the variable to create a plot.
+    - What does the plot teach you about that variable?
+    - Based on this plot, what else might you want to learn from the data?
 
-## After the data reveal:
+## `tidyr`
 
-Assuming everyone has access to the Dropbox folder and that everyone is using **R**:
+When doing EDA, we often want to compare distributions of different variables.
 
-1. Have the person with the most powerful computer (Specifically, the person who has the most _RAM_) read-in the raw data.
-2. Have everyone else:
-    - Support the person reading in the data in case there's issues/problems with reading it in.
-    - Look through the data dictionary and start deciding which variables are IDs, numeric, categorical, dates/times.
-    - Continue to brainstorm ideas that might be interesting to explore.
+- This can be a hassle to do with just `ggplot2` because `ggplot2` likes to use _long_ and not _wide_ data.
+- `tidyr` makes converting wide to long to wide data easy.
 
-## Reading in the data:
+## Wide data
 
-If you are the person assigned to read in the data:
+```{r, echo = FALSE}
+df <- data.frame(name = c("Luke", "Leia", "Han", "Chewie"),
+                 primary = c("Reading", "Reading", "Looking in Mirror", "Roaring"),
+                 secondary = c("Brooding", "Taking down Empires", "Smuggling", "Smuggling"))
+df
+```
 
-- Use the functions from the `readr` package to read in the data.
-    - These functions are (1) faster and (2) do a better job at guessing variable types.
-- Once you have the data read-in, use the `save()` function to place the resulting `.rda` file into the Dropbox folder.
-- Unless it's absolutely necessary, don't include the raw data in the Dropbox folder.
-    - `.rda` files are smaller and not everyone has a ton of Dropbox space.
-    - Using `.rda` files will lead to a standardized data file.
+## Long data
 
-## {.flexbox .vcenter}
+```{r, message = FALSE, warning = FALSE, echo = FALSE}
+library(tidyr)
+gather(df, key = preference, like, c(primary, secondary))
+```
 
-### Follow along as I read-in and save the data.
-
-## Start cleaning the data
-
-Begin cleaning the data by:
-
-- Deciding what to name the variables.
-    - Often, the data as provided has mysterious names. Give the variables more descriptive names.
-- Decide the type of variable (Categorical, numeric, dates/times).
-- Are there variables you can combine?
-    - For instance, separate date and time variables can be combined into a single datetime variable.
-- Are there variables that you might be able to split up into useful new features?
 
 ## {.flexbox .vcenter}
 
-### Follow along as I begin cleaning the data.
+_Follow along as we convert our wide data to long and then use the long data to facet in ggplot_
 
 ## Summary
 
-I've just demo'd:
+We've just demo'd:
 
-- How to read-in data using the `readr` package and save the data to Dropbox.
-- Clean the data by giving variables descriptive names, deciding variable types and combining variables.
+- Using `tidyr` to create a long data set.
+- How to use pipe (`%>%`) to push the data into `ggplot2`
+- Create a faceted histogram of our data.
 
-Tips:
+## Pipes (`%>%`)
 
-- Don't drop variables unless they're redundant.
-- Clean as much data up-front as possible but don't feel compelled to clean everything.
-    - Use the questions you came up with while brainstorming to decide which variables are the most essential to be cleaned.
+Pipes are one of the primary benefits of the `tidyverse`.
 
-# Next steps
+- Pipes take the output from one function (on the left).
+    - And then pipes the output to the first argument of a new function (on the right).
+    
+### this_output() %>% will_go(right_here)
 
-## Exploratory Data Analysis (EDA)
+## `dplyr`
 
-- Begin making plots of the data to learn about them individually.
-    - Can you answer some of your brainstorming questions with plots?
-- Maintain a single, complete, clean `.rda` data file.
+`dplyr` makes doing data manipulations easy.
 
-## Stop and Walk away
+- You can `select()` or `arrange()` your data.
+- You can `mutate()` or `summarize()` your data.
+- You can also `filter()` your data.
 
-After performing some easy EDA
+## {.flexbox .vcenter}
 
-- Stop.
-- Walk away.
-- Think about what you've learned so far and decide how you want to proceed.
-    - Decide on a goal and divide up tasks for _everyone_ to accomplish that goal.
+_Follow along as we combine the data manipulations from `dplyr` with `ggplot2`_
 
-## Other tips
+## Grouped operations
 
-1. Don't be a ball-hog.
-    - Listen to everyone's ideas and opinions. 
-    - Don't monopolize what ideas your group works on.
-    - Don't monopolize the work.
-    - Don't be a jerk.
-2. Continue to step away from your laptops and talk about:
-    - What you've learned.
-    - Potential goals to accomplish.
-    - How to accomplish them.
-3. Keep things organized and synced.
+Another big benefit of `dplyr` is its ability to perform group operations.
 
+- Group the data by a categorical data.
+- Summarize each group.
+
+## {.flexbox .vcenter}
+
+_Follow along as we perform some group operations to calculate the average and standard deviations of MPG per year_
+
+## Other `dplyr` features
+
+`dplyr` contains another set of significant features (which I didn't think I'd have time to present on today). These features are about joining data together.
+
+- Highly recommend reading & following along with the examples of joining data with `dplyr` here:
+    - http://r4ds.had.co.nz/relational-data.html
+
+## On Your Own
+
+Accomplish the following:
+
+1. Compare the distributions of MPG (`highway08`) for Cadillacs and Toyotas in a single, faceted plot.
+2. Overlay the density of MPG (`highway08`) for Cadillacs and Toyotas in a single_non-faceted plot.
+3. Plot the 
 
 ## {.flexbox .vcenter}
 

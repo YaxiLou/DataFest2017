@@ -255,7 +255,21 @@ Accomplish the following:
 
 1. Compare the distributions of MPG (`highway08`) for Cadillacs and Toyotas in a single, faceted plot.
 2. Overlay the density of MPG (`highway08`) for Cadillacs and Toyotas in a single_non-faceted plot.
-3. Plot the 
+3. Plot the average MPG (by year) as a line. Include the the points in the plot.
+
+# Overview
+
+## 
+
+The lessons to take away from these first two workshops:
+
+- Start prepping for DataFest before the data is revealed.
+- Have a plan for night one:
+    - Learn about data.
+    - Read it into **R** and share it as an `.rda`.
+    - Generate ideas for your project by exploring the data.
+    - Stop. And walk away. Talk about how you want to proceed. Establish Goals. Divide tasks up to accomplish the goals. Keep everyone involved.
+
 
 ## {.flexbox .vcenter}
 

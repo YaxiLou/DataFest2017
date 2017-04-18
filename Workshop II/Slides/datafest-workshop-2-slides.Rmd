@@ -65,7 +65,7 @@ _Workshop I_ focused on meeting with your team to start getting organized.
 This workshop focuses on what to do once you:
 
 - Have read in (and saved as an .rda) the raw data.
-- Have spent some time cleaning the variable names, checking the `class()` of the variables.
+- Have spent some time cleaning the variable names, checking the `class()` of the variables, etc.
 - Understand what the individual variables represent in the context of the data.
 
 Specifically, exploring your data with the `tidyverse`.
